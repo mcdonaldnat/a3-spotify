@@ -8,7 +8,7 @@ import { SpotifyService } from '../../services/spotify.service';
     standalone: false
 })
 export class AboutComponent implements OnInit {
-  name:string = "Davin";
+  name:string = null;
   profile_pic:string = "assets/unknown.jpg";
   profile_link:string = null;
 
@@ -21,5 +21,10 @@ export class AboutComponent implements OnInit {
 
    /*TODO: create a function which gets the "about me" information from Spotify when the button in the view is clicked.
   In that function, update the name, profile_pic, and profile_link fields */
+  updateAboutMe = (): undefined => void{
+      // var myProfile: ProfileData = aboutMe();
+  }
 
 }
+
+
