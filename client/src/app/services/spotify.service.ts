@@ -19,7 +19,7 @@ export class SpotifyService {
   private sendRequestToExpress(endpoint:string):Promise<any> {
     //TODO: use the injected http Service to make a get request to the Express endpoint and return the response.
     //Specifically, update the URI according to the base URL for express and the endpoint.
-    var uri:string = this.expressBaseUrl + "/" + endpoint;
+    var uri:string = this.expressBaseUrl + endpoint;
 
     //firstValueFrom generates a Promise for whatever is returned first from the GET request.
     //You shouldn't need to update this part.
@@ -86,21 +86,39 @@ export class SpotifyService {
 
   getAlbumsForArtist(artistId:string):Promise<AlbumData[]> {
     //TODO: use the albums for an artist endpoint to make a request to express.
-    return null as any;
+    var resource:string = encodeURIComponent(artistId);
+    
+    return this.sendRequestToExpress(`/artist-albums/${resource}`).then((data) => {
+      return data.map((item:any) => {
+        return new AlbumData(item)})
+      });
   }
 
   getAlbum(albumId:string):Promise<AlbumData> {
     //TODO: use the album endpoint to make a request to express.
-    return null as any;
+    var resource:string = encodeURIComponent(albumId);
+
+    return this.sendRequestToExpress(`/album/${resource}`).then((data) => {
+      return new AlbumData(data)}
+    );
   }
 
   getTracksForAlbum(albumId:string):Promise<TrackData[]> {
     //TODO: use the tracks for album endpoint to make a request to express.
-    return null as any;
+    var resource:string = encodeURIComponent(albumId);
+    
+    return this.sendRequestToExpress(`/album-tracks/${resource}`).then((data) => {
+      return data.map((item:any) => {
+        return new TrackData(item)})
+      });
   }
 
   getTrack(trackId:string):Promise<TrackData> {
     //TODO: use the track endpoint to make a request to express.
-    return null as any;
+    var resource:string = encodeURIComponent(trackId);
+
+    return this.sendRequestToExpress(`/album/${resource}`).then((data) => {
+      return new TrackData(data)}
+    );
   }
 }
