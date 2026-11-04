@@ -10,6 +10,7 @@ import { ProfileData } from '../data/profile-data';
 @Injectable({
   providedIn: 'root'
 })
+// we will be injecting this service into our components in order to get data
 export class SpotifyService {
 	expressBaseUrl:string = 'http://127.0.0.1:8888';
 
@@ -18,7 +19,7 @@ export class SpotifyService {
   private sendRequestToExpress(endpoint:string):Promise<any> {
     //TODO: use the injected http Service to make a get request to the Express endpoint and return the response.
     //Specifically, update the URI according to the base URL for express and the endpoint.
-    var uri:string = this.expressBaseUrl + endpoint;
+    var uri:string = this.expressBaseUrl + "/" + endpoint;
 
     //firstValueFrom generates a Promise for whatever is returned first from the GET request.
     //You shouldn't need to update this part.
@@ -28,6 +29,9 @@ export class SpotifyService {
       return err;
     });
   }
+
+  // use SendRequestToExpress() in all of the follwoing functions to get the data
+  // will build/ask for the speicific endpoint & create new data depending on the data we ask for
 
   aboutMe():Promise<ProfileData> {
     //This line is sending a request to express, which returns a promise with some data. We're then parsing the data 
