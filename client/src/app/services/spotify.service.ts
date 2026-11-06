@@ -52,10 +52,6 @@ export class SpotifyService {
       console.log(data.type);
       console.log(Object.keys(data))
       console.log(data);
-      // something is wrong in this func
-      // data is an object, so it is not iterable and cannot use .map()
-      // however we might?? be able to iterate data.resources or data.categories but that just gives other errors
-      // actually i dont think so and i cant remember where i found data.resources i might have made it up 
       const items: any[] = Array.isArray(data) ? data : (data.items ?? data.results ?? []);
       // this line does not create any errors but it also doesn't work im so lost rn
       return items.map((item:any) => {

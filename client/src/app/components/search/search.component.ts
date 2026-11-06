@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
   search() {
     console.log("Search clicked!!");
     //TODO: call search function in spotifyService and parse response
-    this.spotifyService.searchFor(this.searchString, this.searchCategory).then((searchData:ResourceData[]) => {
+    this.spotifyService.searchFor(this.searchCategory, this.searchString).then((searchData:ResourceData[]) => {
       // add all resoruces found in the search data to the resoruces array
       searchData.forEach((elem) => {
         this.resources.push(elem);
