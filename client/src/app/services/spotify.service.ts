@@ -46,15 +46,10 @@ export class SpotifyService {
     //Depending on the category (artist, track, album), return an array of that type of data.
     //JavaScript's "map" function might be useful for this, but there are other ways of building the array.
     var encodedResource:string = encodeURIComponent(resource);
-
     return this.sendRequestToExpress(`/search/${category}/${encodedResource}`).then((data) => {
-      
-      console.log(data.type);
-      console.log(Object.keys(data))
-      console.log(data);
-      const items: any[] = Array.isArray(data) ? data : (data.items ?? data.results ?? []);
+      var items: any[] = data[`${category}s`].items;
       // this line does not create any errors but it also doesn't work im so lost rn
-      return items.map((item:any) => {
+      items = items.map((item:any) => {
         switch (category) {
           case 'artist':
             return new ArtistData(item);
@@ -63,9 +58,11 @@ export class SpotifyService {
           case 'track':
             return new TrackData(item);
           default:
-            return null as any;
+            return new AlbumData(item);
         }
       }); 
+      //console.log(items);
+      return items;
     });
   }
 
