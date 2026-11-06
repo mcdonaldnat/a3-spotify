@@ -18,7 +18,6 @@ export class AboutComponent implements OnInit {
   constructor(private route: SpotifyService) { }
 
   ngOnInit() {
-    //this.updateAboutMe();
   }
 
    /*TODO: create a function which gets the "about me" information from Spotify when the button in the view is clicked.
