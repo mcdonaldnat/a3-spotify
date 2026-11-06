@@ -48,6 +48,13 @@ export class SpotifyService {
     var encodedResource:string = encodeURIComponent(resource);
 
     return this.sendRequestToExpress(`/search/${category}/${encodedResource}`).then((data) => {
+      /*
+      console.log(data.type);
+      console.log(Object.keys(data))
+      console.log(data);
+      // something is wrong in this func
+      // data is an object, so it is not iterable and cannot use .map()
+      // however we might?? be able to iterate data.resources or data.categories but that just gives other errors
       return data.map((item:any) => {
         switch (category) {
           case 'artist':
@@ -59,7 +66,26 @@ export class SpotifyService {
           default:
             return null as any;
         }
-      });
+      }); */
+      const results: ResourceData[] = [];
+      console.log(data);
+      console.log(data.type);
+
+    for (const item of data) {
+      switch (category) {
+        case 'artist':
+          results.push(new ArtistData(item));
+          break;
+        case 'album':
+          results.push(new AlbumData(item));
+          break;
+        case 'track':
+          results.push(new TrackData(item));
+          break;
+      }
+    }
+
+    return results;
     });
   }
 
