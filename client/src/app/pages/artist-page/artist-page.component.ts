@@ -22,10 +22,28 @@ export class ArtistPageComponent implements OnInit {
     private service: SpotifyService //added this to the constructor for service access
   ) { }
 
+
+  // something is causing an error to be passed around as data for a few files and then it all ends up crashing here
+  // artist seems to be fine but albulms and tracks does not get the data correctly
   ngOnInit() {
     this.artistId = this.route.snapshot.paramMap.get('id');
     //TODO: Inject the spotifyService and use it to get the artist data, top tracks for the artist, and the artist's albums
+    console.log("init started");
+
+    this.service.getArtist(this.artistId)
+      .then(d => { this.artist = d; console.log('artist ok', d); })
+      .catch(e => console.error('artist failed', e.status, e.message));
+
+    this.service.getAlbumsForArtist(this.artistId)
+      .then(d => { this.albums = d; console.log('albums ok', d); })
+      .catch(e => console.error('albums failed', e.status, e.message));
+
+    this.service.getTopTracksForArtist(this.artistId)
+      .then(d => { this.topTracks = d; console.log('tracks ok', d); })
+      .catch(e => console.error('tracks failed', e.status, e.message));
+
     
+    /*
     Promise.all([this.service.getAlbumsForArtist(this.artistId), //promise all can do multiple promises at once, how fun
                   this.service.getArtist(this.artistId),
                   this.service.getTopTracksForArtist(this.artistId)])
@@ -34,6 +52,12 @@ export class ArtistPageComponent implements OnInit {
                   this.artist = artistData;
                   this.topTracks = topTrackData;
                 });
+    console.log("promise done");
+    console.log(this.artistId);
+    console.log(this.artist);
+    console.log(this.topTracks);
+    console.log(this.albums);
+    */
   }
 
 }

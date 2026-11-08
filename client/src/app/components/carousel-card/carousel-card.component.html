@@ -1,8 +1,9 @@
 <!--TODO: bind href to the appropriate local URL for the album/artist/song.
 
-"'../pages/artist-page.component.html'"
-
--->
+<a [href] = "'/artist/' + resource.id">
+<a [routerLink] = ["/artist/", resource.id]>
+	
+	-->
 <a [href] = "'/artist/' + resource.id">
 	<!--TODO bind src with the album/artist/song image URL-->
 	<img class="d-block w-100" [src] = "resource.imageURL">

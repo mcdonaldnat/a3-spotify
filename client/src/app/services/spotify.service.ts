@@ -120,7 +120,7 @@ export class SpotifyService {
     //TODO: use the track endpoint to make a request to express.
     var resource:string = encodeURIComponent(trackId);
 
-    return this.sendRequestToExpress(`/album/${resource}`).then((data) => {
+    return this.sendRequestToExpress(`/track/${resource}`).then((data) => {
       return new TrackData(data)}
     );
   }
