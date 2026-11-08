@@ -28,9 +28,11 @@ export class SearchComponent implements OnInit {
     //TODO: call search function in spotifyService and parse response
     this.spotifyService.searchFor(this.searchCategory, this.searchString).then((searchData:ResourceData[]) => {
       // add all resoruces found in the search data to the resoruces array
-      searchData.forEach((elem) => {
+        while (this.resources.pop() != undefined);
+        
+        searchData.forEach((elem) => {
         this.resources.push(elem);
-      });
+        });
     });
   }
 
