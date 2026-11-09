@@ -2,10 +2,11 @@
 	<div class="row">
 		<div class="col-12 col-sm-6">
 			<!--TODO: populate with album name-->
-			<h1>???</h1>
+			<h1>{{album.name}}</h1>
 			<!--TODO: set src to album image URL-->
 			<img id="albumImg">
 			<!--TODO: add thermometer with album's popularity -->
+			<app-thermometer [popularity]="album.popularity"></app-thermometer>
 			<!--TODO: use @for to loop over album artists-->
 			@for(artist of album.artists; track artist.id){
 				<p>
