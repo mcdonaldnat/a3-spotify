@@ -22,12 +22,15 @@ export class AlbumPageComponent implements OnInit {
   ngOnInit() {
     this.albumId = this.route.snapshot.paramMap.get('id');
     //TODO: inject spotifyService and use it to get the album data and the tracks for the album
-    Promise.all([this.service.getAlbum(this.albumId), //promise all can do multiple promises at once, how fun
-              this.service.getTracksForAlbum(this.albumId)])
-            .then(([albumData, tracksForAlbum]) => {
-              this.album = albumData;
-              this.tracks = tracksForAlbum;
-            });
+
+    this.service.getAlbum(this.albumId)
+      .then(d => { this.album = d; console.log('album ok', d); })
+      .catch(e => console.error('albums failed', e.status, e.message));
+
+    this.service.getTracksForAlbum(this.albumId)
+      .then(d => { this.tracks = d; console.log('tracks ok', d); })
+      .catch(e => console.error('tracks failed', e.status, e.message));
+    
   }
 
 }
