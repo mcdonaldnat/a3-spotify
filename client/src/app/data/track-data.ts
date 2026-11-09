@@ -26,6 +26,7 @@ export class TrackData extends ResourceData {
 	get durationStr() {
 		var minutes:number = Math.trunc(this.duration_ms / 60000); //60 sec/min * 100ms/sec
 		var seconds:number = Math.trunc((this.duration_ms) / 1000 % 60); // 100ms/sec, get remainder
+		console.log(this);
 		return minutes.toString() + ':' + seconds.toString().padStart(2, '0');
 	}
 }
