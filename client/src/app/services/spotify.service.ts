@@ -81,7 +81,8 @@ export class SpotifyService {
     var resource:string = encodeURIComponent(artistId);
     
     return this.sendRequestToExpress(`/artist-top-tracks/${resource}`).then((data) => {
-      return data.map((item:any) => {
+      const artistTracksArray = data.items;
+      return artistTracksArray.map((item:any) => {
         return new TrackData(item)})
       });
       
@@ -92,7 +93,8 @@ export class SpotifyService {
     var resource:string = encodeURIComponent(artistId);
     
     return this.sendRequestToExpress(`/artist-albums/${resource}`).then((data) => {
-      return data.map((item:any) => {
+      const albumArray = data.items;
+      return albumArray.map((item:any) => {
         return new AlbumData(item)})
       });
   }
@@ -111,7 +113,8 @@ export class SpotifyService {
     var resource:string = encodeURIComponent(albumId);
     
     return this.sendRequestToExpress(`/album-tracks/${resource}`).then((data) => {
-      return data.map((item:any) => {
+      const albumTrackArray = data.items;
+      return albumTrackArray.map((item:any) => {
         return new TrackData(item)})
       });
   }

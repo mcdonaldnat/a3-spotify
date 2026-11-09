@@ -4,7 +4,7 @@
 <a [routerLink] = ["/artist/", resource.id]>
 	
 	-->
-<a [href] = "'/artist/' + resource.id">
+<a [href]="'/' + resource.category + '/' + resource.id">
 	<!--TODO bind src with the album/artist/song image URL-->
 	<img class="d-block w-100" [src] = "resource.imageURL">
 	<div class="carousel-caption d-none d-md-block">
