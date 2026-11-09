@@ -1,5 +1,5 @@
 #artistImg {
-	max-width: 400%;
+	max-width: 100%; /* changed from 400% */
 }
 
 app-artist {
