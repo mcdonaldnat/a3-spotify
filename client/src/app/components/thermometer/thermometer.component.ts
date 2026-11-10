@@ -11,6 +11,8 @@ import { ArtistData } from '../../data/artist-data'; // added for artist data ac
     standalone: false
 })
 export class ThermometerComponent implements OnInit {
+  @Input() popularity :Popularity;
+
   artistId:string;
   artist:ArtistData;
   color: any;
@@ -22,6 +24,7 @@ export class ThermometerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    /*
     this.artistId = this.route.snapshot.paramMap.get('id');
 
     // get the artist from the spotify service route
@@ -36,6 +39,11 @@ export class ThermometerComponent implements OnInit {
         console.log("Exact: " + this.color);
       })
       .catch(e => console.error('thermometer check - artist failed', e.status, e.message));
+  }
+      */
+    this.popularity_percent = this.popularity.percentageString; // convert percent to a string 
+    this.color = this.popularity.color; // get the color for the bg
+    console.log("Exact: " + this.color);
   }
 
 }
