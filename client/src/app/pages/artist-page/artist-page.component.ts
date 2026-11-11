@@ -39,8 +39,8 @@ export class ArtistPageComponent implements OnInit {
       .catch(e => console.error('albums failed', e.status, e.message));
 
     this.service.getTopTracksForArtist(this.artistId)
-      .then(d => { this.topTracks = d; console.log('tracks ok', d); })
-      .catch(e => console.error('tracks failed', e.status, e.message));
+      .then(d => { this.topTracks = d; console.log('tracks ok', d); });
+      //.catch(e => console.error('tracks failed', e.status, e.message));
 
     
     /*

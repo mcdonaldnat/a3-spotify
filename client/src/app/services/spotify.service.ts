@@ -81,7 +81,7 @@ export class SpotifyService {
     var resource:string = encodeURIComponent(artistId);
     
     return this.sendRequestToExpress(`/artist-top-tracks/${resource}`).then((data) => {
-      const artistTracksArray = data.items;
+      const artistTracksArray = data.tracks;
       return artistTracksArray.map((item:any) => {
         return new TrackData(item)})
       });

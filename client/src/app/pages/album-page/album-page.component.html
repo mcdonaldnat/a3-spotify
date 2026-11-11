@@ -4,7 +4,7 @@
 			<!--TODO: populate with album name-->
 			<h1>{{album.name}}</h1>
 			<!--TODO: set src to album image URL-->
-			<img id="albumImg">
+			<img [src] = "album.imageURL" id="albumImg">
 			<!--TODO: add thermometer with album's popularity -->
 			<app-thermometer [popularity]="album.popularity"></app-thermometer>
 			<!--TODO: use @for to loop over album artists-->
